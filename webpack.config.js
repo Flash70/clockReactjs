@@ -8,35 +8,22 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
+
 const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
 
 const optimization = () => {
-const config = {
-    splitChunks: {
-        chunks: 'all'
+    const config = {
+        splitChunks: {
+            chunks: 'all'
+        }
     }
-}
-if (isProd) {
-    config.minimizer = [
-        new OptimizeCssAssetWebpackPlugin(),
-        new TerserWebpackPlugin()
-    ]
-}
+    if (isProd) {
+        config.minimizer = [
+            new OptimizeCssAssetWebpackPlugin(),
+            new TerserWebpackPlugin()
+        ]
+    }
 };
-
-const cssLoaders = extra => {
-    const loaders = [
-        'style-loader',
-        'css-loader'
-    ]
-
-    if (extra) {
-        loaders.push(extra)
-    }
-
-    return loaders
-}
-
 
 
 console.log('is dev', isDev);
@@ -66,19 +53,20 @@ module.exports = {
             }
         }),
         new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: filename('css')
+        })
     ],
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: cssLoaders()
+                test: /\.(css|scss)$/,
+                use: [{loader: MiniCssExtractPlugin.loader,}, 'css-loader', 'sass-loader']
             },
-            {
-                test: /\.scss$/,
-                use: cssLoaders('sass-loader')
-            },
+
             {
                 test: /\.(png|jpeg|jpg|svg|gif)$/,
+                use: ['file-loader']
             },
             {
                 test: /\.m?js$/,
