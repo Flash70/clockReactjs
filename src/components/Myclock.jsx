@@ -2,7 +2,9 @@ import React from 'react';
 import Clock from 'react-clock'
 import 'react-clock/dist/Clock.css'
 
-const MyClock = () => {
+const MyClock = ({state, indexT}) => {
+
+
     const date = new Date();
     date.setHours(date.getHours() + 1);
 
@@ -11,11 +13,10 @@ const MyClock = () => {
     React.useEffect(() => {
         setInterval(() => {
                 const date = new Date();
-                date.setHours(date.getHours() + 1);
+                date.setHours(date.getHours() + 1)
                 setValue(date), 1000
             }
         )
-
     }, []);
 
     return (
