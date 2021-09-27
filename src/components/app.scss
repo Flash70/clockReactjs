@@ -1,6 +1,21 @@
-app {
-  background: blue;
+.app {
+  display: flex;
+  padding: 30px;
+  width: 1200px;
+flex-wrap: wrap;
 }
-h1 {
-  color: red;
+
+.block {
+  padding: 10px;
+  background: azure;
+}
+
+.clock {
+  padding-bottom: 10px;
+}
+
+.digital_clock {
+  display: flex;
+  justify-content: center;
+  padding: 15px 0 0 0;
 }

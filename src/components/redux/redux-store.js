@@ -1,15 +1,15 @@
-import {createStore, combineReducers} from 'redux';
-import timezonesReducer from '../redux/timezones-reducer';
-import indexReducer from "./index-reducer";
-
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import timezonesReducer, {fetchTimeZone} from '../redux/timezones-reducer';
+import thunkMiddleware from 'redux-thunk';
 
 
 const reducers = combineReducers({
     timezones: timezonesReducer,
-    index: indexReducer,
+    fetchTimeZone: fetchTimeZone
 });
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducers,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
 
 export default store;
