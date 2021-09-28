@@ -1,7 +1,7 @@
 import React from 'react';
 import './app.scss';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchTimeZone} from './redux/timezones-reducer';
+import {fetchTimeZone} from '../redux/timezones-reducer';
 import Block from './Block';
 
 

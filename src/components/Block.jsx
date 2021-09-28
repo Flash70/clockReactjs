@@ -7,9 +7,9 @@ import Select from './Select';
 const Block = ({items, isLoaded}) => {
     const [index, setIndex] = React.useState(0);
 
-    const clickCity = React.useCallback((index) => {
+    const clickCity = (index) => {
         setIndex(index);
-    }, [])
+    }
     return (
         (isLoaded ?
                 <div className='block'>
