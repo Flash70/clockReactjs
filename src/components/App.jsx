@@ -6,7 +6,6 @@ import Block from './Block';
 
 
 const App = () => {
-
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
 
